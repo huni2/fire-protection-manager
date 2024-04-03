@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+ <meta charset="utf-8">
+  <link rel="stylesheet" type="text/css" href="/common.css" />
+  <script type="text/javascript" src="/common.js"></script>
+  <style>
+    form { margin-bottom: 4px; }
+    a.btn:last-child { margin-left: 20px; }
+  </style>
+</head>
+<body onload="pagination1()">
+<div class="container">
+  <h1>장비목록</h1>
+  <form method="get" th:object="${pagination1}">
+    <input type="hidden" name="pg" value="1" />
+    <select th:field="*{od}">
+        <option th:each="order : ${ orders }"
+                th:value="${ order.value }" th:text="${ order.label }"></option>
+    </select>
+    <input type="text" th:field="*{eq}" placeholder="검색" />
+    <button type="submit" class="btn">검색</button>
+    <a href="list" class="btn">취소</a>  
+    <a th:href="${ 'create?' + pagination1.queryString }" class="btn blue">장비등록</a>  
+  </form>
+  <javascript>
+  </javascript>
+  <table class="list">
+    <thead>
+      <tr>
+        <th>순번</th>
+        <th>장비명</th>
+        <th>타입</th>
+        <th>도입일자</th>
+        <th>사용자</th>
+        <th>스트레스지수</th>
+        <th>폐기일자</th>
+        <th>등록일자</th>
+        <th>등록자</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr th:each="eqlist : ${ eqLists }" 
+       		th:href="${ 'edit?EQ_SEQ=' + eqlist.EQ_SEQ + '&' + pagination1.queryString }"
+          	onclick="onClickHref(event)">
+	        <td th:text="${ eqlist.EQ_SEQ }"></td>
+	        <td th:text="${ eqlist.EQ_NAME }"></td>
+	        <td th:text="${ eqlist.EQ_TYPE }"></td>
+	        <td th:text="${ eqlist.EQ_INPUT_DATE }"></td>
+	        <td th:text="${ eqlist.EQ_USER }"></td>
+	        <td th:text="${ eqlist.EQ_STRESS_NUM }"></td>
+	        <td th:text="${ eqlist.EQ_DISUSE }"></td>
+	        <td th:text="${ eqlist.REG_DATE }"></td>
+	        <td th:text="${ eqlist.REG_USER }"></td>
+        </tr>
+    </tbody>
+  </table>
+	<div class="pagination1" th:data-record-count="${pagination1.recordCount}"
+       th:data-page-size="${pagination1.sz}" th:data-current-page="${pagination1.pg}"></div>
+</div>
+</body>
+</html>

@@ -7,18 +7,21 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
+    flex-direction: column; /* 세로 방향으로 요소들을 정렬합니다 */
 }
 
-header {
+h1 {
+    text-align: center;
+    margin-top: 40px;
     
-    background-color: #333;
-    color: #fff;
-    padding: 10px;
 }
 
 h2 {
-    text-align: left;
+    text-align: center;
+    margin-top: 30px;
+    
 }
+
 .menu-list {
     display: flex;
     list-style-type: none;
@@ -73,6 +76,7 @@ h2 {
     color: #fff;
     text-decoration: none;
     margin-left: 10px;
+   
 }
 
 .main {
@@ -80,11 +84,13 @@ h2 {
     justify-content: center;
     align-items: center;
     height: 100vh;
+     justify-content: flex-start; /* 중앙에서 상단으로 정렬 방식 변경 */
+      padding-top: 50px; /* 상단으로부터 어느 정도 떨어져 있게 설정, 필요에 따라 조절 */
 }
 
 .login-container {
-    width: 300px;
-    margin: 100px auto;
+    width: 400px;
+    margin: 20px auto;
     background-color: #fff;
     border-radius: 5px;
     padding: 20px;
@@ -102,7 +108,7 @@ h2 {
 
 .form-group label {
     display: block;
-    margin-bottom: 5px;
+    margin-bottom: 10px;
 }
 
 .form-group input {
@@ -110,6 +116,8 @@ h2 {
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 3px;
+    margin: -10px;
+    
 }
 
 button[type="submit"] {
@@ -122,6 +130,19 @@ button[type="submit"] {
     cursor: pointer;
 }
 
+input[type="text"],
+input[type="password"] {
+    width: 100%; /* 인풋 너비를 컨테이너에 맞춤 */
+    padding: 10px;
+    margin-bottom: 10px; /* 인풋 요소들 사이의 마진 */
+    border: 1px solid #ccc;
+    border-radius: 5px; /* 테두리 둥글게 */
+}
+/* 라벨 스타일 */
+label {
+    display: block;
+    margin-bottom: 5px; /* 라벨과 인풋 사이의 마진 */
+}
 button[type="submit"]:hover {
     background-color: #0056b3;
 }

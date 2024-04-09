@@ -19,6 +19,11 @@ public class MainController {
 
         return "redirect:eq/list";
     }
+	@GetMapping("Login")
+    public String login(Model model) {
+
+        return "eq/Login";
+    }
 }
 
 //@GetMapping("create")

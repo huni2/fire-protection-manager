@@ -20,7 +20,7 @@
 .login-button {
   position: absolute;
   top: 20px;
-  right: 20px;
+  right: 140px;
   padding: 10px 20px;
   background-color: #007bff;
   color: white;
@@ -29,6 +29,17 @@
   cursor: pointer;
 }
 
+.signup-button{
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
 .login-button:hover {
   background-color: #0056b3;
 }

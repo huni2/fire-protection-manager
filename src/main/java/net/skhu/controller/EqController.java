@@ -48,7 +48,7 @@ public class EqController {
             @Valid EqEdit eqEdit, BindingResult bindingResult) {
         try {
             eqService.insert(eqEdit, bindingResult, pagination);
-            return "redirect:eqlist?" + pagination.getQueryString();
+            return "redirect:list?" + pagination.getQueryString();
         }
         catch (Exception e) {
             model.addAttribute("users", userService.findAll());
@@ -58,8 +58,8 @@ public class EqController {
     }
 
     @GetMapping("edit")
-    public String edit(Model model, int id, Pagination1 pagination) {
-        EqEdit eqEdit = eqService.findOne(id);
+    public String edit(Model model, int EQ_SEQ, Pagination1 pagination) {
+        EqEdit eqEdit = eqService.findOne(EQ_SEQ);
         List<User> users = userService.findAll();
         model.addAttribute("eqEdit", eqEdit);
         model.addAttribute("users", users);
@@ -71,12 +71,12 @@ public class EqController {
             @Valid EqEdit eqEdit, BindingResult bindingResult) {
         try {
             eqService.update(eqEdit, bindingResult);
-            return "redirect:eq/eqlist?" + pagination.getQueryString();
+            return "redirect:eq/list?" + pagination.getQueryString();
         }
         catch (Exception e) {
             model.addAttribute("users", userService.findAll());
             bindingResult.rejectValue("", null, "수정할 수 없습니다.");
-            return "eq/eqedit";
+            return "eq/edit";
         }
     }
 
@@ -85,12 +85,12 @@ public class EqController {
             EqEdit eqEdit, BindingResult bindingResult) {
         try {
             eqService.delete(eqEdit.getEQ_SEQ());
-            return "redirect:eq/eqlist?" + pagination.getQueryString();
+            return "redirect:eq/list?" + pagination.getQueryString();
         }
         catch (Exception e) {
             model.addAttribute("users", userService.findAll());
             bindingResult.rejectValue("", null, "삭제할 수 없습니다.");
-            return "eq/eqedit";
+            return "eq/edit";
         }
     }
 }

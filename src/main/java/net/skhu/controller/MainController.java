@@ -24,6 +24,12 @@ public class MainController {
 
         return "eq/Login";
     }
+
+	@GetMapping("register")
+    public String register(Model model) {
+
+        return "eq/register";
+    }
 }
 
 //@GetMapping("create")

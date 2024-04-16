@@ -66,7 +66,7 @@ public interface EqMapper {
   @Insert("""
       INSERT eq (EQ_SEQ, EQ_NAME, EQ_TYPE, EQ_INPUT_DATE, EQ_USER, EQ_STRESS_NUM, EQ_DISUSE, REG_DATE)
       VALUES (#{EQ_SEQ}, #{EQ_NAME}, #{EQ_TYPE}, #{EQ_INPUT_DATE}, #{EQ_USER}, #{EQ_STRESS_NUM}, #{EQ_DISUSE}, #{REG_DATE}) """)
-  @Options(useGeneratedKeys=true, keyProperty="UserId")
+  @Options(useGeneratedKeys=true, keyProperty="EQ_SEQ")
   void insert(Eq eq);
 
   @Update("""
@@ -79,9 +79,9 @@ public interface EqMapper {
         EQ_STRESS_NUM = #{EQ_STRESS_NUM}
         EQ_DISUSE = #{EQ_DISUSE}
         REG_DATE = #{REG_DATE}
-      WHERE UserId = #{UserId} """)
+      WHERE EQ_SEQ = #{EQ_SEQ} """)
   void update(Eq eq);
 
-  @Delete("DELETE FROM eq WHERE UserId = #{UserId}")
-  void delete(int UserId);
+  @Delete("DELETE FROM eq WHERE EQ_SEQ = #{EQ_SEQ}")
+  void delete(int EQ_SEQ);
 }

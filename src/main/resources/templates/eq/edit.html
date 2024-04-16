@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" type="text/css" href="/common.css" />
+  <style>
+    form { width: 600px; margin: auto; padding: 5px 20px; box-shadow: 2px 2px 5px gray; }
+    div.table { display: table; }
+    div.row { display: table-row; }
+    div.cell { display: table-cell; padding: 5px; }
+    div.cell:nth-child(1) { width: 100; text-align: right; vertical-align: top; }
+    div.buttons { margin: 1em; }
+  </style>
+</head>
+<body>
+<div class="container">
+ <form method="post" th:object="${eqEdit}">
+    <h1 th:text="${eqEdit.EQ_SEQ > 0 ? '장비 수정' : '장비 등록'}"></h1>
+    <div class="table">
+    
+    <div class="row">
+        <div class="cell">장비순번:</div>
+        <div class="cell">
+           <input type="text" th:field="*{EQ_SEQ}" />
+        </div>
+      </div>
+      
+      <div class="row">
+        <div class="cell">장비사용자:</div>
+        <div class="cell">
+           <input type="text" th:field="*{EQ_USER}" />
+           <div class="error" th:errors="*{EQ_USER}"></div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="cell">등록자:</div>
+        <div class="cell">
+          <input type="text" th:field="*{REG_USER}" />
+          <div class="error" th:errors="*{REG_USER}"></div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="cell">도입일자:</div>
+        <div class="cell">
+          <input type="text" th:field="*{EQ_INPUT_DATE}" />
+          <div class="error" th:errors="*{EQ_INPUT_DATE}"></div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="cell">폐기일자:</div>
+        <div class="cell">
+          <input type="text" th:field="*{EQ_DISUSE}" />
+          <div class="error" th:errors="*{EQ_DISUSE}"></div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="cell">등록일자:</div>
+        <div class="cell">
+          <input type="text" th:field="*{REG_DATE}" />
+          <div class="error" th:errors="*{REG_DATE}"></div>
+        </div>
+      </div>
+</div>
+    <hr />
+    <div class="buttons">
+      <button type="submit" class="btn blue" 
+              name="cmd" value="save">저장</button>
+      <button type="submit" class="btn red" 
+              th:if="${ eqEdit.EQ_SEQ > 0 }"
+              onclick="return confirm('삭제하시겠습니까?')"
+              name="cmd" value="delete">삭제</button>
+      <a th:href="${ 'list?' + pagination1.queryString }" class="btn">목록으로</a>
+    </div>
+    <div class="error" th:errors="${eqEdit}"></div>
+  </form>
+</div>
+</body>
+</html>

@@ -44,6 +44,10 @@
   background-color: #0056b3;
 }
 
+.signup-button:hover {
+  background-color: #0056b3;
+}
+
 body {
   align-items: center;
   background-color: var(--white);

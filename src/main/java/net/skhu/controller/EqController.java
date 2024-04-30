@@ -30,7 +30,6 @@ public class EqController {
         List<Eq> eqList = eqService.findAll(pagination);
         model.addAttribute("eqLists", eqList);
         model.addAttribute("orders", eqService.getOrders());
-        System.out.println("======" + eqList.toString());
         return "eq/list";
     }
 

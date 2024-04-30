@@ -30,3 +30,17 @@ div.pagination table td.active { background-color: #48f; }
 div.pagination table a { text-decoration: none; color: blue; display: inline-block;
                           width: 25px; padding: 6px; }
 div.pagination table td.active a { color: white; }
+
+box { border: 1px solid #aaa; box-shadow: 3px 3px 3px rgb(100, 100, 100, 0.2)}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    flex-direction: column; /* 세로 방향으로 요소들을 정렬합니다 */
+}     

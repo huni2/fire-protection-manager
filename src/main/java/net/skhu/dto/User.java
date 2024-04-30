@@ -13,5 +13,11 @@ public class User {
 
 	String password;
 
+	String loginName;
+
+	boolean enabled;
+
+	String userType;
+
 
 }

@@ -12,20 +12,33 @@ import net.skhu.service.UserService;
 public class LoginController {
 
     @Autowired
-    private UserService userService; // 사용자 인증을 위한 서비스 (필요에 따라 구현)
+    private UserService userService; // 사용자 인증을 위한 서비스
 
-    @PostMapping("/Login")
-    public String login(@RequestParam("username") String username,
+//    @PostMapping("/Login")
+//    public String login(@RequestParam("loginName") String loginName,
+//                        @RequestParam("password") String password,
+//                        RedirectAttributes redirectAttributes) {
+//        boolean isAuthenticated = userService.authenticate(loginName, password);
+//
+//        if (isAuthenticated) {
+//            return "redirect:eq/list"; // 로그인 성공 시 list.html로 리다이렉트
+//        } else {
+//            redirectAttributes.addFlashAttribute("error", "Invalid username or password");
+//            return "redirect:/Login"; // 로그인 실패 시 main.html로 리다이렉트
+//        }
+//    }
+
+    @PostMapping("/Login") // 경로 앞에 "/"를 추가하여 명확한 경로 지정
+    public String login(@RequestParam("loginName") String loginName,
                         @RequestParam("password") String password,
                         RedirectAttributes redirectAttributes) {
-        boolean isAuthenticated = userService.authenticate(username, password);
+        boolean isAuthenticated = userService.authenticate(loginName, password);
 
         if (isAuthenticated) {
-            return "redirect:eq/list"; // 로그인 성공 시 list.html로 리다이렉트
+            return "redirect:/eq/list"; // 로그인 성공 시 eq/list.html로 리다이렉트
         } else {
-            redirectAttributes.addFlashAttribute("error", "Invalid username or password");
-            return "redirect:/main"; // 로그인 실패 시 main.html로 리다이렉트
+            redirectAttributes.addFlashAttribute("loginError", "Invalid username or password");
+            return "redirect:/Login"; // 로그인 실패 시 Login 화면으로 재리다이렉트
         }
     }
 }
-

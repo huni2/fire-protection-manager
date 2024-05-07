@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+  <link rel="stylesheet" type="text/css" href="/common.css" />
+  <script type="text/javascript" src="/common.js"></script>
+  <style>
+    form { margin-bottom: 4px; }
+    a.btn:last-child { margin-left: 20px; }
+  </style>
+</head>
+<body onload="pagination1()">
+    <h1>방화복 사용 내역 조회</h1>
+    <form method="get" th:object="${pagination1}">
+    <input type="hidden" name="pg" value="1" />
+    <select th:field="*{od}">
+        <option th:each="order : ${ orders }"
+                th:value="${ order.value }" th:text="${ order.label }"></option>
+    </select>
+    <input type="text" th:field="*{eq}" placeholder="검색" />
+    <button type="submit" class="btn">검색</button>
+    <a href="list" class="btn">취소</a>  
+    <a th:href="${ 'create?' + pagination1.queryString }" class="btn blue">방화복조회</a>  
+  </form>
+    <table class="list">
+        <thead>
+            <tr>
+            	<th>아이디</th>
+            	<th>방화복ID</th>
+                <th>사용 날짜</th>
+                <th>사용자</th>
+                <th>사용 목적</th>
+                <th>사용 시간(시간)</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="usage : ${fireSuitUsages}"
+	            th:href="${ 'fireSuitUsages?id=' + fireSuitUsage.id + '&' + pagination1.queryString }"
+	          	onclick="onClickHref(event)">
+	          	<td th:text="${usage.id}"></td>
+	          	<td th:text="${usage.fireSuitId}"></td>
+                <td th:text="${usage.usageDate}"></td>
+                <td th:text="${usage.username}"></td>
+                <td th:text="${usage.purpose}"></td>
+                <td th:text="${usage.duration}"></td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="pagination1" th:data-record-count="${pagination1.recordCount}"
+       th:data-page-size="${pagination1.sz}" th:data-current-page="${pagination1.pg}"></div>
+</body>
+</html>

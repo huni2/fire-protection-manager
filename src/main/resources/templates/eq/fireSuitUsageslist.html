@@ -9,7 +9,7 @@
     a.btn:last-child { margin-left: 20px; }
   </style>
 </head>
-<body onload="pagination1()">
+<body>
     <h1>방화복 사용 내역 조회</h1>
     <form method="get" th:object="${pagination1}">
     <input type="hidden" name="pg" value="1" />
@@ -35,7 +35,7 @@
         </thead>
         <tbody>
             <tr th:each="usage : ${fireSuitUsages}"
-	            th:href="${ 'fireSuitUsages?id=' + fireSuitUsage.id + '&' + pagination1.queryString }"
+	            th:href="${ 'fireSuitUsages?id=' + usage.id + '&' + pagination1.queryString }"
 	          	onclick="onClickHref(event)">
 	          	<td th:text="${usage.id}"></td>
 	          	<td th:text="${usage.fireSuitId}"></td>

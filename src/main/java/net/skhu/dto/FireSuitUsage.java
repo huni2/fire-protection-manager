@@ -5,7 +5,7 @@ import java.time.LocalDateTime;
 import lombok.Data;
 
 @Data
-public class FireSuitUsage {
+public class FireSuitUsage {	//소방복
 
 	String id;
 

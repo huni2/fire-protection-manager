@@ -35,10 +35,10 @@ public interface FireSuitUsageMapper {
     // 사용 내역 전체 조회
     @Select("""
             SELECT fsu.*, u.username
-            FROM FireSuitUsage fsu LEFT JOIN users u ON fsu.username = u.username
-            WHERE #{eq} = '' OR
-            fsu.username = #{eq} OR
-            u.username LIKE CONCAT('%', #{eq}, '%')
+            FROM firesuitusage fsu LEFT JOIN users u ON fsu.username = u.username
+    	    WHERE #{eq} = ''
+               OR fsu.username = #{eq}
+               OR u.username LIKE CONCAT('%', #{eq}, '%')
             ORDER BY
             (CASE WHEN #{od} = 0 THEN fsu.usageDate END) DESC,
             (CASE WHEN #{od} = 1 THEN fsu.username END) ASC
@@ -48,31 +48,30 @@ public interface FireSuitUsageMapper {
 
     // 사용 내역 개수 조회
     @Select("""
-    	    SELECT COUNT(*)
-    	    FROM FireSuitUsage f LEFT JOIN users u ON f.username = u.username
-    	    WHERE #{eq} = '' OR
-    	           f.username = #{eq} OR
-            f.usageDate LIKE CONCAT('%', #{eq}, '%') OR
-            u.username LIKE CONCAT('%', #{eq}, '%')
+    	    SELECT COUNT(*) AS recordCount
+    	    FROM firesuitusage fsu LEFT JOIN users u ON fsu.username = u.username
+    	    WHERE #{eq} = ''
+               OR fsu.username = #{eq}
+               OR u.username LIKE CONCAT('%', #{eq}, '%')
     	""")
     	int getCount(Pagination1 pagination);
 
     // 특정 ID를 가진 사용 내역 조회
-    @Select("SELECT * FROM FireSuitUsage WHERE id = #{id}")
+    @Select("SELECT * FROM firesuitusage WHERE id = #{id}")
     FireSuitUsage findOne(String id);
 
     // 사용자명으로 사용 내역 조회
-    @Select("SELECT * FROM FireSuitUsage WHERE username LIKE CONCAT('%', #{username}, '%')")
-    List<FireSuitUsage> findByUsername(String username);
+    @Select("SELECT * FROM firesuitusage WHERE id LIKE CONCAT('%', #{id}, '%')")
+    FireSuitUsage findById(String id);
 
     // 사용 내역 추가
-    @Insert("INSERT INTO FireSuitUsage (id, fireSuitId, username, usageDate, purpose, duration) "
+    @Insert("INSERT INTO firesuitusage (id, fireSuitId, username, usageDate, purpose, duration) "
     		+ "VALUES (#{id}, #{fireSuitId}, #{username}, #{usageDate}, #{purpose}, #{duration})")
     @Options(useGeneratedKeys=true, keyProperty="id")
     void insert(FireSuitUsage fireSuitUsage);
 
     // 사용 내역 수정
-    @Update("UPDATE FireSuitUsage SET "
+    @Update("UPDATE firesuitusage SET "
     		+ "fireSuitId = #{fireSuitId}, "
     		+ "username = #{username}, "
     		+ "usageDate = #{usageDate}, "
@@ -82,6 +81,6 @@ public interface FireSuitUsageMapper {
     void update(FireSuitUsage fireSuitUsage);
 
     // 사용 내역 삭제
-    @Delete("DELETE FROM FireSuitUsage WHERE id = #{id}")
+    @Delete("DELETE FROM firesuitusage WHERE id = #{id}")
     void delete(String id);
 }

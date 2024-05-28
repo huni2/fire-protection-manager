@@ -21,11 +21,12 @@
     <!--<form action="#" th:action="@{/fireSuitUsage/save}" th:object="${fireSuitUsage}" method="post">-->
         <div class="row">
             <label for="usageDate">방화복ID:</label>
-            <input type="date" id="fireSuitId" name="fireSuitId" th:value="*{fireSuitId}" required>
+            <!--  <input type="date" id="fireSuitId" name="fireSuitId" th:value="*{fireSuitId}" required>-->
+            <input type="text" id="fireSuitId" name="fireSuitId" th:value="*{fireSuitId}" required>
             <div class="error" th:errors="*{fireSuitId}"></div>
         </div>
         <div class="row">
-            <label for="user">사용날짜:</label>
+            <label for="usageDate">사용날짜:</label>
             <input type="text" id="usageDate" name="usageDate" th:value="*{usageDate}" required>
             <div class="error" th:errors="*{usageDate}"></div>
         </div>
@@ -49,12 +50,12 @@
       <button type="submit" class="btn blue" 
               name="cmd" value="save">저장</button>
       <button type="submit" class="btn red" 
-              th:if="${ eqEdit.EQ_SEQ > 0 }"
+              th:if="${ FireSuitUsageEdit.id> 0 }"
               onclick="return confirm('삭제하시겠습니까?')"
               name="cmd" value="delete">삭제</button>
       <a th:href="${ 'fireSuitUsageslist?' + pagination1.queryString }" class="btn">목록으로</a>
     </div>
-        <div class="error" th:errors="${fireSuitUsages}"></div>
+        <!--  <div class="error" th:errors="${fireSuitUsages}"></div>-->
     </form>
 </div>
 </body>

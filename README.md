@@ -19,6 +19,8 @@
 
 #### 개발환경
   * SpringBoot
+  * MySQL
+  * Java17-Spring
 
 #### 테스트 환경
 
